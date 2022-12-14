@@ -9,8 +9,21 @@
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {}
 	},
-	"postCreateCommand": "az extension add -n ml -y",
+	"postCreateCommand": "az extension add -n ml -y && conda init",
 	"hostRequirements": {
 		"memory": "16gb"
+	},
+	"customizations": {
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"settings": {
+				"python.defaultInterpreterPath": "/opt/conda/envs/aml_command_sdk/bin/python",
+				//Indicates whether to automatically activate the environment you select using the Python: Select Interpreter command when a new terminal is created.
+				// For example, when this setting is true and you select a virtual environment, the extension automatically runs the environment's activate command when creating a new terminal (source env/bin/activate on macOS/Linux; env\scripts\activate on Windows).
+				"python.terminal.activateEnvironment": true,
+				// Specifies whether to activate the currently open terminal when the Python extension is activated, using the virtual environment selected.
+				"python.terminal.activateEnvInCurrentTerminal": true
+			}
+		}
 	}
 }
